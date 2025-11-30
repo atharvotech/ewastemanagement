@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Login</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            padding: 20px;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            top: 0;
+            left: 0;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.08;
+        }
+
+        .shape1 {
+            width: 250px;
+            height: 250px;
+            background: white;
+            border-radius: 50%;
+            top: 10%;
+            left: 5%;
+        }
+
+        .shape2 {
+            width: 180px;
+            height: 180px;
+            background: white;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            bottom: 15%;
+            right: 10%;
+        }
+
+        .shape3 {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            top: 60%;
+            right: 8%;
+        }
+
+        .shape4 {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 20%;
+            top: 15%;
+            right: 25%;
+        }
+
+        .shape5 {
+            width: 150px;
+            height: 150px;
+            background: white;
+            border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+            bottom: 20%;
+            left: 15%;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 45px 40px;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 440px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .sparkle-icon {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 24px;
+            height: 24px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 35px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            color: #4a5568;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            transform-origin: left;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            z-index: 2;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px 20px 16px 48px;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 15px;
+            transition: all 0.3s;
+            background: white;
+            color: #2d3748;
+            font-weight: 500;
+        }
+
+        .input-group input::placeholder {
+            color: #a0aec0;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            background: #fafbff;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 24px;
+        }
+
+        .forgot-password a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .forgot-password a:hover {
+            color: #764ba2;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35);
+        }
+
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .login-btn:hover::before {
+            left: 100%;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.45);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            color: #a0aec0;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 38%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e2e8f0, transparent);
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .social-btn svg {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .social-btn:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .social-btn:hover::after {
+            opacity: 0.1;
+        }
+
+        .signup-link {
+            text-align: center;
+            color: #718096;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .signup-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .signup-link a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s;
+        }
+
+        .signup-link a:hover::after {
+            width: 100%;
+        }
+
+        .particle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: fixed;
+            font-size: 12px;
+            pointer-events: none;
+        }
+
+        @media (max-height: 750px) {
+            .login-container {
+                padding: 35px 30px;
+                max-height: 95vh;
+                overflow-y: auto;
+            }
+            
+            .logo {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 25px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 35px 25px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+        <div class="shape shape4"></div>
+        <div class="shape shape5"></div>
+    </div>
+
+    <div class="login-container">
+        <div class="logo">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 4L28.9 18.1H43.8L31.9 26.8L36.8 40.9L24 32.2L11.2 40.9L16.1 26.8L4.2 18.1H19.1L24 4Z" fill="white" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+            <svg class="sparkle-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z" fill="#FCD34D"/>
+            </svg>
+        </div>
+        <h1>Welcome Back</h1>
+        <p class="subtitle">Login to continue your journey</p>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <label>Email</label>
+                <div class="input-wrapper">
+                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input type="email" placeholder="your@email.com" required>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label>Password</label>
+                <div class="input-wrapper">
+                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19 10V9C19 7.93913 18.5786 6.92172 17.8284 6.17157C17.0783 5.42143 16.0609 5 15 5H9C7.93913 5 6.92172 5.42143 6.17157 6.17157C5.42143 6.92172 5 7.93913 5 9V10M7 10H17C18.1046 10 19 10.8954 19 12V18C19 19.1046 18.1046 20 17 20H7C5.89543 20 5 19.1046 5 18V12C5 10.8954 5.89543 10 7 10Z" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input type="password" placeholder="Enter your password" required>
+                </div>
+            </div>
+            
+            <div class="forgot-password">
+                <a href="#">Forgot Password?</a>
+            </div>
+            
+            <button type="submit" class="login-btn">Sign In</button>
+        </form>
+        
+        <div class="divider">Or continue with</div>
+        
+        <div class="social-login">
+            <button class="social-btn" title="Google" type="button">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                </svg>
+            </button>
+            <button class="social-btn" title="Facebook" type="button">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/>
+                </svg>
+            </button>
+            <button class="social-btn" title="Apple" type="button">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" fill="#000000"/>
+                </svg>
+            </button>
+        </div>
+        
+        <p class="signup-link">
+            Don't have an account? <a href="#">Sign Up</a>
+        </p>
+    </div>
+
+    <script>
+        // Initial entrance animations
+        gsap.from('.login-container', {
+            duration: 1.4,
+            y: 100,
+            opacity: 0,
+            scale: 0.7,
+            ease: 'elastic.out(1, 0.5)',
+            delay: 0.2
+        });
+
+        gsap.from('.logo', {
+            duration: 1.2,
+            rotation: 720,
+            scale: 0,
+            ease: 'back.out(2)',
+            delay: 0.6
+        });
+
+        gsap.from('.logo svg:first-child', {
+            duration: 1,
+            rotation: -360,
+            scale: 0,
+            ease: 'back.out(2)',
+            delay: 0.8
+        });
+
+        gsap.from('h1', {
+            duration: 0.8,
+            y: -40,
+            opacity: 0,
+            ease: 'power4.out',
+            delay: 0.9
+        });
+
+        gsap.from('.subtitle', {
+            duration: 0.8,
+            y: -30,
+            opacity: 0,
+            ease: 'power4.out',
+            delay: 1.1
+        });
+
+        gsap.from('.input-group', {
+            duration: 0.7,
+            x: -60,
+            opacity: 0,
+            stagger: 0.2,
+            ease: 'power3.out',
+            delay: 1.3
+        });
+
+        gsap.from('.forgot-password, .login-btn, .divider, .social-login, .signup-link', {
+            duration: 0.6,
+            y: 30,
+            opacity: 0,
+            stagger: 0.12,
+            ease: 'power3.out',
+            delay: 1.7
+        });
+
+        // Continuous logo animations
+        gsap.to('.logo', {
+            duration: 2.5,
+            scale: 1.1,
+            repeat: -1,
+            yoyo: true,
+            ease: 'power1.inOut'
+        });
+
+        gsap.to('.sparkle-icon', {
+            duration: 3,
+            rotation: 360,
+            repeat: -1,
+            ease: 'none'
+        });
+
+        // Floating shapes
+        gsap.to('.shape1', {
+            duration: 25,
+            y: 120,
+            x: 80,
+            rotation: 360,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+
+        gsap.to('.shape2', {
+            duration: 18,
+            y: -100,
+            x: -60,
+            rotation: -180,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+
+        gsap.to('.shape3', {
+            duration: 22,
+            y: -120,
+            x: -80,
+            scale: 1.3,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+
+        gsap.to('.shape4', {
+            duration: 20,
+            y: 80,
+            x: -100,
+            rotation: 180,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+
+        gsap.to('.shape5', {
+            duration: 16,
+            y: -90,
+            x: 70,
+            rotation: -90,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+
+        // Input animations
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', function() {
+                const wrapper = this.closest('.input-wrapper');
+                const icon = wrapper.querySelector('.input-icon');
+                const label = wrapper.closest('.input-group').querySelector('label');
+                
+                gsap.to(label, {
+                    duration: 0.4,
+                    scale: 1.08,
+                    color: '#667eea',
+                    ease: 'back.out(3)'
+                });
+
+                gsap.to(icon, {
+                    duration: 0.5,
+                    scale: 1.2,
+                    rotation: 12,
+                    ease: 'elastic.out(1, 0.3)'
+                });
+
+                gsap.to(icon.querySelector('path'), {
+                    duration: 0.3,
+                    attr: { stroke: '#667eea' },
+                    ease: 'power2.out'
+                });
+
+                gsap.to(this, {
+                    duration: 0.3,
+                    scale: 1.01,
+                    ease: 'power2.out'
+                });
+            });
+
+            input.addEventListener('blur', function() {
+                const wrapper = this.closest('.input-wrapper');
+                const icon = wrapper.querySelector('.input-icon');
+                const label = wrapper.closest('.input-group').querySelector('label');
+
+                gsap.to(label, {
+                    duration: 0.3,
+                    scale: 1,
+                    color: '#4a5568',
+                    ease: 'power2.out'
+                });
+
+                gsap.to(icon, {
+                    duration: 0.3,
+                    scale: 1,
+                    rotation: 0,
+                    ease: 'power2.out'
+                });
+
+                gsap.to(icon.querySelector('path'), {
+                    duration: 0.3,
+                    attr: { stroke: '#9CA3AF' },
+                    ease: 'power2.out'
+                });
+
+                gsap.to(this, {
+                    duration: 0.3,
+                    scale: 1,
+                    ease: 'power2.out'
+                });
+            });
+
+            input.addEventListener('input', function() {
+                const icon = this.closest('.input-wrapper').querySelector('.input-icon');
+                gsap.fromTo(icon, 
+                    { scale: 0.9 },
+                    { duration: 0.2, scale: 1.2, ease: 'power2.out' }
+                );
+                gsap.to(icon, {
+                    duration: 0.2,
+                    scale: 1,
+                    delay: 0.2,
+                    ease: 'power2.out'
+                });
+            });
+        });
+
+        // Enhanced button click animation
+        document.querySelector('.login-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Create sparkles
+            for(let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="#FCD34D"><path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z"/></svg>';
+                document.body.appendChild(sparkle);
+                
+                const rect = this.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                
+                gsap.set(sparkle, { x, y, opacity: 1 });
+                
+                gsap.to(sparkle, {
+                    duration: 1.5,
+                    x: x + (Math.random() - 0.5) * 350,
+                    y: y + (Math.random() - 0.5) * 350,
+                    rotation: Math.random() * 720,
+                    opacity: 0,
+                    scale: Math.random() * 2,
+                    ease: 'power2.out',
+                    onComplete: () => sparkle.remove()
+                });
+            }
+            
+            // Particle explosion
+            for(let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                document.body.appendChild(particle);
+                
+                const rect = this.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                
+                gsap.set(particle, { x, y });
+                
+                const angle = (Math.PI * 2 * i) / 40;
+                const distance = 120 + Math.random() * 100;
+                
+                gsap.to(particle, {
+                    duration: 1.2,
+                    x: x + Math.cos(angle) * distance,
+                    y: y + Math.sin(angle) * distance,
+                    opacity: 0,
+                    scale: Math.random() * 2.5,
+                    ease: 'power2.out',
+                    onComplete: () => particle.remove()
+                });
+            }
+            
+            gsap.to(this, {
+                duration: 0.1,
+                scale: 0.92,
+                repeat: 3,
+                yoyo: true,
+                ease: 'power2.inOut'
+            });
+
+            setTimeout(() => {
+                gsap.to('.login-container', {
+                    duration: 0.6,
+                    scale: 0.85,
+                    opacity: 0,
+                    rotationY: 90,
+                    ease: 'power2.in',
+                    onComplete: () => {
+                        alert('Login successful! 🎉');
+                        gsap.to('.login-container', {
+                            duration: 0.6,
+                            scale: 1,
+                            opacity: 1,
+                            rotationY: 0,
+                            ease: 'back.out(1.5)'
+                        });
+                    }
+                });
+            }, 400);
+        });
+
+         // Social button animations
+        document.querySelectorAll('.social-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    duration: 0.4,
+                    scale: 1.12,
+                    rotation: 5,
+                    ease: 'elastic.out(1, 0.3)'
+                });
+                
+                const svg = this.querySelector('svg');
+                if (svg) {
+                    gsap.to(svg, {
+                        duration: 0.3,
+                        scale: 1.15,
+                        ease: 'back.out(2)'
+                    });
+                }
+            });
+
+            btn.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    duration: 0.3,
+                    scale: 1,
+                    rotation: 0,
+                    ease: 'power2.out'
+                });
+                
+                const svg = this.querySelector('svg');
+                if (svg) {
+                    gsap.to(svg, {
+                        duration: 0.3,
+                        scale: 1,
+                        ease: 'power2.out'
+                    });
+                }
+            });
+
+            // optional click ripple for social buttons
+            btn.addEventListener('click', function() {
+                const rect = this.getBoundingClientRect();
+                const ripple = document.createElement('div');
+                ripple.style.position = 'fixed';
+                ripple.style.left = `${rect.left + rect.width/2}px`;
+                ripple.style.top = `${rect.top + rect.height/2}px`;
+                ripple.style.width = '8px';
+                ripple.style.height = '8px';
+                ripple.style.background = 'rgba(102,126,234,0.2)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.pointerEvents = 'none';
+                document.body.appendChild(ripple);
+                gsap.to(ripple, {
+                    duration: 0.9,
+                    scale: 40,
+                    opacity: 0,
+                    ease: 'power2.out',
+                    onComplete: () => ripple.remove()
+                });
+            });
+        });
+        </script>
+</body>
+</html>

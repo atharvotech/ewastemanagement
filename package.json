@@ -1,0 +1,20 @@
+{
+  "name": "new-main",
+  "version": "1.0.0",
+  "description": "e waste management app by Atharv and Deeksha for school work",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^9.0.0"
+  },
+  "scripts": {
+    "test": "nodemon",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
