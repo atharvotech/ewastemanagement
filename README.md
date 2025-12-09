@@ -21,6 +21,7 @@ Contents
 - [Security & production checklist](#security--production-checklist)
 - [Contributing](#contributing)
 - [License](#license)
+- [Autor](#author)
 
 ---
 
@@ -201,18 +202,9 @@ npm-debug.log
 
 Add a license file if you plan to publish this repo (e.g., `MIT`).
 
----
-
-If you'd like, I can now:
-
-- (A) write this README into `README.md` (done),
-- (B) create `.gitignore` and `.env.example`, and move dev scripts into `dev-scripts/`, or
-- (C) remove the temporary debug & auto-drop logic from `routes/auth.js` before you push to GitHub.
-
 ## Author
 
 As a Class 9 student at The Chintels School, I am incredibly proud to say my journey into coding began back in Class 6. This early start gave me a strong foundation and a significant three-year advantage, allowing me to move past introductory concepts quickly and tackle more complex programming challenges today. For me, coding is all about applying logical thinking to transform creative ideas into functional projects; I no longer just consume technology—I actively use my skills to be a creator and innovator within the digital world.
 
-This project is made by Atharv Shukla in collaboration with Deeksha Awasthi — https://github.com/deekshaawasthi0912
+This project is made by Atharv Shukla in collaboration with [Deeksha Awasthi](https://github.com/deekshaawasthi0912)
 
-Tell me which of (B) or (C) you want next and I will make those changes.
