@@ -1,0 +1,21 @@
+/* Admin styles */
+body { font-family: Arial, sans-serif; background:#f5f7fb; color:#333; }
+.dashboard-nav { display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:#0b5394; color:#fff; }
+.dashboard-nav .logo { font-weight:700; }
+.logout-btn { background:#ff6b6b; color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; }
+.dashboard-container { display:flex; max-width:1100px; margin:24px auto; gap:20px; }
+.sidebar { width:220px; background:#fff; padding:12px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
+.sidebar-menu .menu-item { display:block; width:100%; padding:10px; border:none; background:transparent; text-align:left; cursor:pointer; border-radius:6px; margin-bottom:6px; }
+.sidebar-menu .menu-item.active { background:#0b5394; color:#fff; }
+.dashboard-content { flex:1; }
+.section-header { margin-bottom:12px; }
+#usersList, #ordersList { background:#fff; padding:12px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
+.user-row, .order-row { display:flex; gap:12px; align-items:center; padding:8px; border-bottom:1px solid #eee; }
+.user-row:last-child, .order-row:last-child { border-bottom:none; }
+.user-actions, .order-actions { margin-left:auto; display:flex; gap:8px; }
+.btn { padding:6px 10px; border-radius:6px; border:none; cursor:pointer; }
+.btn.warn { background:#ffcc00; }
+.btn.danger { background:#ff6b6b; color:#fff; }
+.btn.primary { background:#0b5394; color:#fff; }
+.badge { padding:4px 8px; border-radius:4px; background:#eef2ff; }
+.details { font-size:13px; color:#555; }

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url();
+#lmain {
+  height: 100%;
+}
+
+.heading {
+  width: -moz-max-content;
+  width: max-content;
+  font-family: "Monotype Corsiva";
+  font-size: 4vw;
+  line-height: 4.9vw;
+  text-align: center;
+  text-decoration: underline;
+  font-weight: 100;
+  text-underline-offset: 5px;
+  overflow: hidden;
+  cursor: url(./images/hero1.jpg);
+  cursor: default;
+}
+.heading::after {
+  height: 0.4vw;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* font-family: gilroy; */
+}
+
+body {
+  align-items: center;
+  justify-content: center;
+  background-color: #111;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  /* background-color: #fff; */
+  padding: 100px 0;
+  gap: 80px;
+  cursor: default;
+}
+
+.container .card {
+  position: relative;
+  width: 24vw;
+  height: 250px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: default;
+  transition: 0.5s;
+  background-color: #212121;
+  box-shadow: 0px 0px 10px black;
+}
+
+.container .card:hover {
+  height: 350px;
+}
+
+.container .card .imgbx {
+  position: absolute;
+  inset: 20px 20px 50px 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  transition: 0.5s;
+  z-index: 1000;
+}
+
+.container .card:hover .imgbx {
+  inset: -50px 60px 250px 60px;
+  box-shadow: 0 0 0 10px #111;
+}
+
+.container .card .imgbx::before {
+  content: " ";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  z-index: 11;
+  background-color: transparent;
+  left: -30px;
+  border-top-right-radius: 20px;
+  transform: translateY(-100px);
+  opacity: 0;
+  box-shadow: 5px -5px 0 4px #111;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.container .card:hover .imgbx::before {
+  opacity: 1;
+  transform: translateY(50px);
+}
+
+.container .card .imgbx::after {
+  content: " ";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  z-index: 11;
+  background-color: transparent;
+  right: -30px;
+  border-top-left-radius: 20px;
+  transform: translateY(-100px);
+  opacity: 0;
+  box-shadow: -5px -5px 0 4px #111;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.container .card:hover .imgbx::after {
+  opacity: 1;
+  transform: translateY(50px);
+}
+
+.container .card .imgbx img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  overflow: hidden;
+  z-index: 13;
+  border-radius: 15px;
+}
+
+.container .card p {
+  position: relative;
+  padding: 40px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50px);
+  transition: 0.5s;
+  font-size: 0.9vw;
+}
+
+.container .card:hover p {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(40px);
+}
+
+.container .card h2 {
+  position: absolute;
+  bottom: 8px;
+  color: #f3f3f3;
+  transition: 0.5s;
+  font-weight: 600;
+}
+
+.container .card:hover h2 {
+  background-color: green;
+  bottom: -25px;
+  padding: 5px 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 0 10px #111;
+}
+
+.unCard {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px black;
+}
+
+.unName {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.unSp,
+.unSt {
+  margin-top: 8px;
+}
+
+.unSt:not(b) {
+  font-style: italic;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 5vw 4%;
+  }
+  .container .card {
+    width: 40%;
+  }
+  .container .card p {
+    padding: 0px 0.5vw;
+    font-size: 2vw;
+  }
+  .container .card:hover {
+    height: 320px;
+  }
+}
+@media (max-width: 430px) {
+  .container .card {
+    width: 90%;
+  }
+}/*# sourceMappingURL=athletes.css.map */
+    </style>
+</head>
+<body>
+     <div id="main" onclick="navtl.reverse()">
+        <h1 class="heading title" data-text="The Great Athletes of India">The Great Athletes of India</h1>
+        <div class="container">
+
+        </div>
+
+        <div class="line"></div>
+
+        <div class="unSt">
+            <un class="head title unHead" style="text-align: center; opacity: 1;width: max-content; font-style: none;">
+                Unique Stories</un>
+            <div class="unCard">
+                <div class="unName">Milkha Singh</div>
+                <div class="unSp"><b>Sport: </b>Athletics (Track and Field)</div>
+                <div class="unSt"><b>Story: </b>Known as the "Flying Sikh," Milkha Singh's journey from a war-torn
+                    childhood to
+                    becoming one of India's greatest athletes is truly inspiring. He lost his family during the
+                    Partition of
+                    India and faced numerous hardships. Despite these challenges, he went on to represent India in the
+                    1956,
+                    1960, and 1964 Olympics. His near-miss for a medal in the 400m final at the 1960 Rome Olympics
+                    remains one
+                    of the most memorable moments in Indian sports history.</div>
+            </div>
+
+            <div class="unCard">
+                <div class="unName">Mary Kom</div>
+                <div class="unSp"><b>Sport: </b>Boxing</div>
+                <div class="unSt"><b>Story: </b>Mary Kom, a six-time world champion, grew up in a poor family in
+                    Manipur. She
+                    faced numerous obstacles, including financial difficulties and societal barriers, to pursue her
+                    passion for
+                    boxing. Her determination and hard work led her to win a bronze medal at the 2012 London Olympics,
+                    making
+                    her the first Indian woman boxer to achieve this feat.</div>
+            </div>
+
+            <div class="unCard">
+                <div class="unName">Abhinav Bindra</div>
+                <div class="unSp"><b>Sport: </b>Shooting</div>
+                <div class="unSt"><b>Story: </b>Abhinav Bindra made history by becoming the first Indian to win an
+                    individual
+                    gold medal at the Olympics. He achieved this milestone in the Men's 10m Air Rifle event at the 2008
+                    Beijing
+                    Olympics. His journey is marked by his relentless pursuit of perfection and his dedication to the
+                    sport.
+                </div>
+            </div>
+
+            <div class="unCard">
+                <div class="unName">PV Sindhu</div>
+                <div class="unSp"><b>Sport: </b>Badminton</div>
+                <div class="unSt"><b>Story: </b>PV Sindhu's rise to fame is a story of hard work and perseverance. She
+                    became
+                    the first Indian woman to win an Olympic silver medal in badminton at the 2016 Rio Olympics. She
+                    followed
+                    this up with a bronze medal at the Tokyo 2020 Olympics, making her the first Indian woman to win two
+                    Olympic
+                    medals.</div>
+            </div>
+
+            <div class="unCard">
+                <div class="unName">Sushil Kumar</div>
+                <div class="unSp"><b>Sport: </b>Wrestling</div>
+                <div class="unSt"><b>Story: </b>Sushil Kumar's journey from a small village in Haryana to becoming a
+                    two-time
+                    Olympic medallist is truly inspiring. He won a bronze medal at the 2008 Beijing Olympics and a
+                    silver medal
+                    at the 2012 London Olympics. His achievements have inspired many young wrestlers in India.</div>
+            </div>
+
+            <div class="unCard">
+                <div class="unName">Deepa Malik</div>
+                <div class="unSp"><b>Sport: </b>Para Athletics</div>
+                <div class="unSt"><b>Story: </b>Deepa Malik became the first Indian woman to win a medal in the
+                    Paralympic
+                    Games. She won a silver medal in the shot put event at the 2016 Rio Paralympics. Despite being
+                    paralyzed
+                    from the waist down, her determination and resilience have made her a role model for many.</div>
+            </div>
+
+            <div class="unCard">
+                <div class="unName">Neeraj Chopra</div>
+                <div class="unSp"><b>Sport: </b>Javelin Throw</div>
+                <div class="unSt"><b>Story: </b>Neeraj Chopra's historic gold medal win at the Tokyo 2020 Olympics made
+                    him the
+                    first Indian track-and-field athlete to achieve this feat. His journey from a small village in
+                    Haryana to
+                    the global stage is a testament to his hard work and dedication.</div>
+            </div>
+        </div>
+<script>
+    function content(){
+    const conatiner = document.querySelector('.container');
+    // code for appending name img and decription of each card using for lopp by array in conatiner
+    const names = [
+        "Neeraj Chopra",
+        "Manu Bhaker",
+        "Manu, Sarabjot",
+        "Swapnil Kusale",
+        "Indian Men's Hockey",
+        "Aman Sehrawat",
+        "Avani Lekhara",
+        "Sumit Antil",
+        "Navdeep Singh",
+        "Praveen Kumar",
+        "Mariyappan Thangavelu",
+        "Sheetal Devi"
+    ];
+
+    const dets = [
+        `Born: Dec 24, 1997 <br> Sport: Javelin Throw <br> Achievement: Silver Medal <br> Details: First Indian track-and-field athlete to achieve two Olympic medals.`,
+        `Born: Feb 18, 2002 <br> Sport: Shooting (10m Air Pistol Women's) <br> Achievement: Bronze Medal <br> Details: First Indian woman to win two medals at a single edition of the Olympics.`,
+        `Born: Manu Bhaker (Feb 18, 2002) <br> Sarabjot Singh (Apr 12, 2001) <br> Sport: Shooting (10m Air Pistol Mixed Team) <br> Achievement: Bronze Medal <br> Details: First Indian woman to win two medals in a single edition of the Olympics.`,
+        `Born: Feb 3, 1995 <br> Sport: Shooting (50m Rifle 3 Positions) <br> Achievement: Bronze Medal <br> Details: First Indian to win a medal in this discipline.`,
+        `Sport: Hockey <br> Achievement: Bronze Medal <br> Details: Defeated Spain 2-1 in the third-place playoff.`,
+        `Born: Oct 10, 2003 <br> Sport: Wrestling <br> Achievement: Bronze Medal <br> Details: India's youngest Olympic medallist`,
+         `
+            sport: "Shooting"<br>
+            born: "November 8, 2001, in Jaipur, Rajasthan"<br>
+            achievements: "First Indian woman to win two gold medals at the Paralympic Games. Defended her title in the women's 10m air rifle standing SH1 shooting event at Paris 2024 with a world record score."
+        `,
+        `
+            sport: "Javelin Throw"<br>
+            born: "July 6, 1998, in Sonipat, Haryana"<br>
+            achievements: "First Indian man to defend his title at the Paralympics, winning gold in the men's javelin throw F64 at Paris 2024 with a throw of 70.59m, setting a new Paralympic record."
+        `,
+        `
+            sport: "Javelin Throw"<br>
+            born: "2000, in Panipat, Haryana"<br>
+            achievements: "Secured India's seventh gold medal in the men's javelin throw F41 category at Paris 2024 with a personal best throw of 47.32 meters, setting a new Paralympic record."
+        `,
+        `
+            sport: "High Jump"<br>
+            born: "May 15, 2003, in Noida, Uttar Pradesh"<br>
+            achievements: "Captured gold in the men's high jump T64 class at Paris 2024."
+        `,
+        `
+            sport: "High Jump"<br>
+            born: "June 28, 1995, in Salem, Tamil Nadu"<br>
+            achievements: "First Indian to win medals at three consecutive Paralympics. Won gold at Rio 2016, silver at Tokyo 2020, and bronze in the high jump T42 class at Paris 2024."
+        `,
+        `
+            sport: "Archery"<br>
+            born: "2007, in Jammu and Kashmir"<br>
+            achievements: "Became India's youngest Paralympic medallist at 17, securing bronze in the mixed team event alongside Rakesh Kumar at Paris 2024."
+        `
+    ];
+
+    // let imgs = ['hero4.jpg', 'hero1.jpg', 'hero2.jpg', 'hero6.jpg','hockey.jpg','hero5.jpg','avni.jpg','sumit.jpg','','','y.jpg','Shital.jpg']
+    let imgs = ['hero4.jpg', 'hero1.jpg', 'hero2.jpg', 'hero6.jpg','hockey.jpg','hero5.jpg','avni.jpg','sumit.jpg','navdeep.jpg','praveen.jpg','y.jpg','shital.jpg']
+
+    var clutter = ''
+    for (let i = 0; i < names.length; i++) {
+        clutter += `<div class="card disp">
+        <div class="imgbx">
+                    <img src="/images/${imgs[i]}" alt="" srcset="">
+                </div>
+                <p>
+                    ${dets[i]}
+                </p>
+                <h2>${names[i]}</h2>
+            </div>`
+    }
+
+    conatiner.innerHTML = clutter
+
+    var disp = document.querySelectorAll(".disp")
+
+
+    disp.forEach(e => {
+
+        e.addEventListener("mouseover", (dets) => {
+            gsap.to('.mousefollower', {
+                scale: 2,
+                duration: .5,
+                ease: "Power1.inout",
+            })
+
+            gsap.to('#behindmouse', {
+                backgroundColor: "#000",
+            })
+        })
+
+        e.addEventListener("mouseleave", (dets) => {
+            gsap.to('.mousefollower', {
+                scale: 1,
+                duration: 1,
+                ease: "elastic.out",
+            })
+            gsap.to('#behindmouse', {
+
+                backgroundColor: "#fff",
+            })
+        })
+    })
+
+}
+content()
+function cusAnim() {
+
+    loadtl.from('.heading',{
+        y: -500,
+        ease:Circ.easeOut
+    })
+
+    loadtl.from('.container', {
+        opacity:0,
+    })
+    let unC = document.querySelectorAll('.unCard')
+
+    Array.from(unC).forEach(e => {
+        gsap.from(e, {
+            opacity: 0,
+            scale: 0,
+            duration: 1,
+            ease: Circ.easeInOut,
+            scrollTrigger: {
+                trigger: e,
+                scroller: "#main",
+                start: "top 85%",
+                end: "top 70%",
+                scrub: 1,
+            }
+        })
+    })
+
+    let cs = document.querySelectorAll('.card')
+
+    Array.from(cs).forEach(e => {
+        gsap.from(e, {
+            opacity:0,
+            scrollTrigger: {
+                trigger: e,
+                scroller: "#main",
+                start: "top 85%",
+                end: "top 70%",
+                scrub: 1,
+            }
+        })
+    })
+
+    gsap.from('.unHead', {
+        opacity: 0,
+        scrollTrigger: {
+            trigger: '.unHead',
+            scroller: "#main",
+            start: "top 85%",
+            end: "top 70%",
+            scrub: 1,
+        }
+    })
+}
+</script>
+</body>
+</html>

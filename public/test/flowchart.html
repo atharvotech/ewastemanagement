@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Waste Management Flowchart</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: #f5f7fa;
+        display: flex;
+        justify-content: center;
+        padding: 40px 10px;
+    }
+
+    .flowchart-container {
+        width: 100%;
+        max-width: 900px;
+        text-align: center;
+    }
+
+    .step {
+        background: #ffffff;
+        padding: 25px 20px;
+        margin: 25px auto;
+        border-radius: 16px;
+        width: 75%;
+        box-shadow: 0px 6px 20px rgba(0,0,0,0.05);
+        border-left: 6px solid #6bc48e;
+        transition: 0.3s ease;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .step.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .step:hover {
+        transform: scale(1.03);
+        box-shadow: 0px 12px 28px rgba(0,0,0,0.08);
+    }
+
+    .step-title {
+        font-weight: 600;
+        font-size: 20px;
+        color: #2d4739;
+    }
+
+    .step-desc {
+        color: #4b4b4b;
+        font-size: 15px;
+        margin-top: 5px;
+    }
+
+    /* Lines between steps */
+    .line {
+        width: 3px;
+        height: 40px;
+        background: #c8d6ca;
+        margin: 0 auto;
+        border-radius: 10px;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="flowchart-container">
+
+    <div class="step">
+        <div class="step-title">1. Collection</div>
+        <div class="step-desc">We gather e-waste from homes, offices & industries through safe pickup.</div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="step">
+        <div class="step-title">2. Sorting & Inspection</div>
+        <div class="step-desc">Material is sorted by type—plastics, metals, circuits, batteries & more.</div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="step">
+        <div class="step-title">3. Recycling</div>
+        <div class="step-desc">We break down waste into reusable raw materials using eco-friendly processes.</div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="step">
+        <div class="step-title">4. Upcycling</div>
+        <div class="step-desc">Functional parts are repurposed into refurbished and upcycled products.</div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="step">
+        <div class="step-title">5. Resource Conversion</div>
+        <div class="step-desc">Metals, plastics & components are converted into usable industrial resources.</div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="step">
+        <div class="step-title">6. Delivered Back</div>
+        <div class="step-desc">Recovered materials re-enter the supply chain, reducing environmental impact.</div>
+    </div>
+
+</div>
+
+<script>
+    // Fade-in animation on scroll
+    const steps = document.querySelectorAll(".step");
+
+    const revealOnScroll = () => {
+        const trigger = window.innerHeight * 0.85;
+        steps.forEach(step => {
+            const top = step.getBoundingClientRect().top;
+            if (top < trigger) {
+                step.classList.add("active");
+            }
+        });
+    };
+
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+</script>
+
+</body>
+</html>

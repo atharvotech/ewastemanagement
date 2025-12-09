@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Analysis | Waste Management Co.</title>
+  <link rel="stylesheet" href="data.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <h1>Data Analytics Dashboard</h1>
+    <p>Insights that drive a cleaner and smarter future.</p>
+  </header>
+
+  <!-- FILTERS -->
+  <section class="filters">
+    <h2>Filters</h2>
+    <div class="filter-box">
+      <select id="regionFilter">
+        <option value="all">All Regions</option>
+        <option value="north">North</option>
+        <option value="south">South</option>
+        <option value="east">East</option>
+        <option value="west">West</option>
+      </select>
+
+      <select id="wasteTypeFilter">
+        <option value="all">All Waste Types</option>
+        <option value="plastic">Plastic</option>
+        <option value="organic">Organic</option>
+        <option value="metal">Metal</option>
+        <option value="e-waste">E-waste</option>
+      </select>
+
+      <button onclick="applyFilters()">Apply</button>
+    </div>
+  </section>
+
+  <!-- COUNTERS -->
+  <section class="counters">
+    <div class="counter-box">
+      <h3>Total Customers</h3>
+      <p class="counter" data-target="45300">0</p>
+    </div>
+
+    <div class="counter-box">
+      <h3>Total Branches</h3>
+      <p class="counter" data-target="22">0</p>
+    </div>
+
+    <div class="counter-box">
+      <h3>Most Preferred Branch</h3>
+      <p id="preferredBranch">Loading...</p>
+    </div>
+  </section>
+
+  <!-- SMALL PIE CHART -->
+  <section class="charts-section">
+    <h2>Branch Distribution</h2>
+
+    <!-- Reduced from 300×300 to 180×180 -->
+    <canvas id="pieChart" width="580" height="580"></canvas>
+  </section>
+
+  <!-- FLOWCHART -->
+  <section class="flowchart">
+    <h2>Branch Workflow</h2>
+
+    <div class="flow-container">
+      <div class="flow-box">Waste Collection</div>
+      <div class="arrow">⬇</div>
+      <div class="flow-box">Sorting Facility</div>
+      <div class="arrow">⬇</div>
+      <div class="flow-box">Recycling / Upcycling</div>
+      <div class="arrow">⬇</div>
+      <div class="flow-box">Resource Conversion</div>
+      <div class="arrow">⬇</div>
+      <div class="flow-box">Distribution / Reuse</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Waste Management Co.</p>
+  </footer>
+
+  <script src="data.js"></script>
+</body>
+
+</html>

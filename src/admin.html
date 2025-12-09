@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Panel - WASTEWISE</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="dashboard-nav">
+    <div class="logo">WASTEWISE - Admin</div>
+    <div class="nav-right">
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="sidebar-menu">
+        <button class="menu-item active" data-tab="users">Users</button>
+        <button class="menu-item" data-tab="orders">Orders</button>
+      </div>
+    </aside>
+
+    <main class="dashboard-content">
+      <section id="users-tab" class="tab-content active">
+        <div class="section-header"><h1>Users</h1></div>
+        <div id="usersList"></div>
+      </section>
+
+      <section id="orders-tab" class="tab-content">
+        <div class="section-header"><h1>All Orders</h1></div>
+        <div id="ordersList"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

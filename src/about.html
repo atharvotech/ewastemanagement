@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Waste Management Co.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/about.css" />
+</head>
+<body class="bg-main min-h-screen text-white relative">
+
+    <!-- Navigation -->
+   <nav class="relative z-50 px-6 py-6 md:px-12 flex flex-col md:flex-row items-center justify-between">
+        <!-- Logo -->
+        <a href="#"
+            class="w-8 h-8 text-purple-700 rounded-full flex items-center justify-center ">
+            <img src="../imgs/chintels.png" alt="">
+        </a>
+        <div class="text-2xl font-bold tracking-wider mb-4 md:mb-0 logo-anim">THE CHINTELS SCHOOL</div>
+
+        <!-- Search Bar -->
+        <div class="relative w-full md:w-1/3 max-w-md mx-auto mb-4 md:mb-0 search-anim">
+            <input type="text"
+                class="w-full bg-white text-gray-800 rounded-full py-2 px-10 focus:outline-none shadow-lg"
+                placeholder="">
+            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+
+        <div class="nav-link flex space-x-6 text-sm font-medium nav-links-anim">
+            <span onclick="loadPage('/')">HOME</span>
+            <span onclick="loadPage('/login')">LOGIN</span>
+            <span onclick="loadPage('/register')">REGISTER</span>
+            <span onclick="loadPage('/Dashboard')">DASHBOARD</span>
+            <span onclick="loadPage('/about')">ABOUT US</span>
+        </div>
+    </nav>
+    
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>About Us</h1>
+      <p>Transforming waste into worth for a cleaner, greener future.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about">
+    <h2>Who We Are</h2>
+    <p>
+      At <strong>Waste Management Co.</strong>, we believe waste is not the end—it's the beginning of new possibilities.  
+      We specialize in <strong>recycling, upcycling, resource recovery, and sustainable waste solutions</strong> for communities, industries, and businesses of all sizes.
+    </p>
+  </section>
+
+  <!-- PROCESS SECTION -->
+  <section class="process">
+    <h2>What We Do</h2>
+    <div class="process-grid">
+      <div class="card fade-in">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733789.png" alt="">
+        <h3>Recycle</h3>
+        <p>We convert paper, glass, plastics, and metals into new, usable materials.</p>
+      </div>
+
+      <div class="card fade-in">
+        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" alt="">
+        <h3>Upcycle</h3>
+        <p>We give discarded items new purpose by transforming them into higher-value products.</p>
+      </div>
+
+      <div class="card fade-in">
+       <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="">
+        <h3>Resource Conversion</h3>
+        <p>We turn organic waste into energy, compost, and valuable industrial inputs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION SECTION -->
+  <section class="vision">
+    <h2>Our Vision</h2>
+    <p>
+      A world where waste is minimized, ecosystems thrive, and sustainability is woven into everyday life.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Waste Management Co. | Creating Value from Waste</p>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/about.js"></script>
+</body>
+</html>

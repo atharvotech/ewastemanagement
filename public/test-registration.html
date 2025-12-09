@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Registration</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: 50px auto; padding: 20px; }
+        form { display: flex; flex-direction: column; gap: 10px; }
+        input { padding: 10px; font-size: 16px; }
+        button { padding: 10px; cursor: pointer; font-size: 16px; background: #007bff; color: white; border: none; }
+        button:hover { background: #0056b3; }
+        #result { margin-top: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Test Registration API</h1>
+    <form onsubmit="testRegister(event)">
+        <input type="text" id="fullName" placeholder="Full Name" value="Test User" required>
+        <input type="email" id="email" placeholder="Email" value="test@example.com" required>
+        <input type="password" id="password" placeholder="Password" value="password123" required>
+        <button type="submit">Test Registration</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        async function testRegister(e) {
+            e.preventDefault();
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Loading...';
+
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ fullName, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    resultDiv.classList.remove('error');
+                    resultDiv.classList.add('success');
+                    resultDiv.innerHTML = `✅ Registration Successful!<br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                } else {
+                    resultDiv.classList.remove('success');
+                    resultDiv.classList.add('error');
+                    resultDiv.innerHTML = `❌ Registration Failed<br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                }
+            } catch (err) {
+                resultDiv.classList.remove('success');
+                resultDiv.classList.add('error');
+                resultDiv.innerHTML = `❌ Network Error: ${err.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

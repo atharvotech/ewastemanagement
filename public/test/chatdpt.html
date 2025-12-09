@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charts Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Pie Chart</h2>
+    <canvas id="pieChart" width="300" height="300"></canvas>
+
+    <h2>Bar Chart</h2>
+    <canvas id="barChart" width="500" height="300"></canvas>
+
+    <script>
+        // Pie Chart Function
+        function drawPieChart(canvasId, data, colors) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 100;
+            let startAngle = 0;
+
+            data.forEach((value, index) => {
+                const sliceAngle = (value / 100) * 2 * Math.PI;
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
+                ctx.closePath();
+                ctx.fillStyle = colors[index];
+                ctx.fill();
+                startAngle += sliceAngle;
+            });
+        }
+
+        // Bar Chart Function
+        function drawBarChart(canvasId, labels, data, color) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            const barWidth = 40;
+            const barSpacing = 20;
+            const startX = 50;
+            const startY = canvas.height - 50;
+
+            data.forEach((value, index) => {
+                const barHeight = (value / 300) * 200; // Scale to fit
+                const x = startX + index * (barWidth + barSpacing);
+                const y = startY - barHeight;
+
+                ctx.fillStyle = color;
+                ctx.fillRect(x, y, barWidth, barHeight);
+
+                // Labels
+                ctx.fillStyle = '#000';
+                ctx.fillText(labels[index], x + barWidth / 2 - 10, startY + 20);
+                ctx.fillText(value, x + barWidth / 2 - 10, y - 10);
+            });
+        }
+
+        // Initialize charts on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Pie chart
+            if (document.getElementById('pieChart')) {
+                drawPieChart('pieChart', [40, 25, 20, 15], ['#2E8B57', '#4682B4', '#32CD32', '#FFD700']);
+            }
+
+            // Bar chart
+            if (document.getElementById('barChart')) {
+                drawBarChart('barChart', ['Jan', 'Feb', 'Mar', 'Apr'], [100, 150, 200, 250], '#2E8B57');
+            }
+        });
+    </script>
+
+</body>
+</html>

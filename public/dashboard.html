@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - RE-SRIJAN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+    <!-- Top Navigation -->
+    <nav class="dashboard-nav">
+        <div class="nav-left">
+            <div class="logo">RE-SRIJAN</div>
+        </div>
+        <div class="nav-right">
+            <div class="user-menu">
+                <span id="userNameDisplay">User</span>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-menu">
+                <button class="menu-item active" data-tab="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="menu-item" data-tab="profile">
+                    <i class="fas fa-user"></i>
+                    <span>My Profile</span>
+                </button>
+                <button class="menu-item" data-tab="orders">
+                    <i class="fas fa-box"></i>
+                    <span>My Orders</span>
+                </button>
+                <button class="menu-item" data-tab="place-order">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Place Order</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+
+            <!-- Dashboard Tab -->
+            <section id="dashboard-tab" class="tab-content active">
+                <div class="section-header">
+                    <h1>Welcome to Your Dashboard</h1>
+                    <p>Manage your profile and track your e-waste orders</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Orders</h3>
+                            <p id="totalOrders">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Pending Orders</h3>
+                            <p id="pendingOrders">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon completed">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Completed Orders</h3>
+                            <p id="completedOrders">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon progress">
+                            <i class="fas fa-spinner"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>In Progress</h3>
+                            <p id="inProgressOrders">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-orders">
+                    <h2>Recent Orders</h2>
+                    <div id="recentOrdersList" class="orders-list">
+                        <p class="empty-state">No orders yet. <a href="#" onclick="switchTab('place-order')">Create one now!</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Tab -->
+            <section id="profile-tab" class="tab-content">
+                <div class="section-header">
+                    <h1>My Profile</h1>
+                    <p>Manage your personal information</p>
+                </div>
+
+                <div class="profile-container">
+                    <form id="profileForm" class="profile-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" placeholder="Enter your city">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="address">Street Address</label>
+                                <textarea id="address" name="address" placeholder="Enter your full address" rows="2"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="state">State/Province</label>
+                                <input type="text" id="state" name="state" placeholder="Enter your state">
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode">Zip/Postal Code</label>
+                                <input type="text" id="zipCode" name="zipCode" placeholder="Enter your zip code">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-undo"></i>
+                                Reset
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Orders Tab -->
+            <section id="orders-tab" class="tab-content">
+                <div class="section-header">
+                    <h1>My Orders</h1>
+                    <p>View and manage all your e-waste collection orders</p>
+                </div>
+
+                <div class="orders-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="scheduled">Scheduled</button>
+                    <button class="filter-btn" data-filter="in-progress">In Progress</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+
+                <div id="ordersContainer" class="orders-container">
+                    <p class="empty-state">No orders found. <a href="#" onclick="switchTab('place-order')">Create one now!</a></p>
+                </div>
+            </section>
+
+            <!-- Place Order Tab -->
+            <section id="place-order-tab" class="tab-content">
+                <div class="section-header">
+                    <h1>Place New Order</h1>
+                    <p>Schedule an e-waste collection</p>
+                </div>
+
+                <div class="order-form-container">
+                    <form id="placeOrderForm" class="place-order-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="wasteType">Type of E-Waste *</label>
+                                <select id="wasteType" name="wasteType" required>
+                                    <option value="">Select waste type</option>
+                                    <option value="computers">Computers & Laptops</option>
+                                    <option value="mobile">Mobile Phones</option>
+                                    <option value="appliances">Kitchen Appliances</option>
+                                    <option value="tvs">TVs & Monitors</option>
+                                    <option value="batteries">Batteries</option>
+                                    <option value="cables">Cables & Wires</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Quantity *</label>
+                                <div class="quantity-input">
+                                    <input type="number" id="quantity" name="quantity" min="1" placeholder="Enter quantity" required>
+                                    <select id="unit" name="unit">
+                                        <option value="kg">Kg</option>
+                                        <option value="items">Items</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="orderPhone">Contact Phone *</label>
+                                <input type="tel" id="orderPhone" name="phone" placeholder="Phone number for collection" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="scheduledDate">Preferred Date *</label>
+                                <input type="date" id="scheduledDate" name="scheduledDate" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="orderAddress">Delivery Address *</label>
+                                <textarea id="orderAddress" name="address" placeholder="Full address for collection" rows="3" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="orderCity">City *</label>
+                                <input type="text" id="orderCity" name="city" placeholder="City" required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-paper-plane"></i>
+                                Place Order
+                            </button>
+                            <button type="reset" class="btn btn-secondary btn-large">
+                                <i class="fas fa-undo"></i>
+                                Clear Form
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Order Detail Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <!-- <script src="../js/dashboard.js"></script> -->
+</body>
+
+</html>
