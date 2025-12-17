@@ -46,6 +46,9 @@ app.get('/about', (req, res) => {
 app.get('/data', (req, res) => {
     res.sendFile('data.html', { root: './src' });
 });
+app.get('/history', (req, res) => {
+    res.sendFile('history.html', { root: './src' });
+});
 
 // connect to mongodb and start server
 const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/ewaste';
