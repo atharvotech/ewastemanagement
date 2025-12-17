@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Researchen | History & Impact</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="../css/home.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    * { 
+      box-sizing: border-box; 
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    }
+    
+    body { 
+      margin: 0; 
+      background: linear-gradient(135deg, #f4f6f8 0%, #e9f0f5 100%); 
+      color: #333; 
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #a4cf6a 0%, #7fb069 100%);
+      color: white;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      margin-bottom: 10px;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin: 0;
+      opacity: 0.95;
+    }
+
+    section {
+      padding: 60px 8%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: #a4cf6a;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #a4cf6a, #7fb069);
+      border-radius: 2px;
+    }
+
+    /* Timeline */
+    .timeline {
+      background: linear-gradient(135deg, rgb(155, 125, 100) 0%, rgb(140, 110, 85) 100%);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      border-left: 5px solid #a4cf6a;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .timeline:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+    }
+
+    .timeline p {
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin: 15px 0;
+    }
+
+    .timeline strong {
+      color: #a4cf6a;
+      font-weight: 700;
+    }
+
+    /* Premium Swiper Carousel */
+    .milestone-section {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 500px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .swiper-slide {
+      display: flex;
+      align-items: stretch;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swiper-slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .slide-image {
+      width: 55%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slide-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .swiper-slide-active .slide-image img {
+      transform: scale(1.05);
+    }
+
+    .slide-content {
+      width: 45%;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      background: rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .slide-number {
+      font-size: 4rem;
+      font-weight: 900;
+      opacity: 0.1;
+      margin: 0;
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
+
+    .slide-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 20px 0;
+      color: #fff;
+    }
+
+    .slide-description {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      opacity: 0.95;
+      margin: 0;
+    }
+
+    .milestone-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      width: fit-content;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Swiper Navigation */
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 50px;
+      height: 50px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background: #a4cf6a;
+      transform: scale(1.1);
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-size: 1.3rem;
+      color: #667eea;
+      font-weight: bold;
+    }
+
+    .swiper-button-next:hover::after,
+    .swiper-button-prev:hover::after {
+      color: white;
+    }
+
+    /* Swiper Pagination */
+    .swiper-pagination-bullet {
+      background: rgba(255,255,255,0.5);
+      opacity: 1;
+      width: 12px;
+      height: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: white;
+      width: 35px;
+      border-radius: 5px;
+    }
+
+    /* Charts */
+    .charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .chart-box {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      border-top: 4px solid #a4cf6a;
+      transition: all 0.3s ease;
+    }
+
+    .chart-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    .chart-box h3 {
+      color: #667eea;
+      margin-top: 0;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #5e773e 0%, #4a5c2f 100%);
+      color: white;
+      text-align: center;
+      padding: 30px;
+      margin-top: 60px;
+      font-weight: 500;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      section {
+        padding: 40px 5%;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .swiper {
+        height: 400px;
+      }
+
+      .slide-content {
+        width: 100%;
+        padding: 30px 20px;
+      }
+
+      .slide-image {
+        display: none;
+      }
+
+      .slide-title {
+        font-size: 1.5rem;
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        width: 40px;
+        height: 40px;
+      }
+
+      .charts {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 30px 15px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .swiper {
+        height: 350px;
+      }
+
+      .slide-content {
+        padding: 20px 15px;
+      }
+
+      .slide-title {
+        font-size: 1.2rem;
+      }
+
+      .slide-description {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+
+ 
+ <nav class="relative z-50 px-6 py-6 md:px-12 flex flex-col md:flex-row items-center justify-between">
+        <!-- Logo -->
+        <a href="#"
+            class="w-8 h-8 text-purple-700 rounded-full flex items-center justify-center ">
+            <img src="../imgs/chintels.png" alt="">
+        </a>
+        <div class="text-2xl font-bold tracking-wider mb-4 md:mb-0 logo-anim">THE CHINTELS SCHOOL</div>
+
+        <!-- Search Bar -->
+        <div class="relative w-full md:w-1/3 max-w-md mx-auto mb-4 md:mb-0 search-anim">
+            <input type="text"
+                class="w-full bg-white text-gray-800 rounded-full py-2 px-10 focus:outline-none shadow-lg"
+                placeholder="">
+            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+
+        <div class="nav-link flex space-x-6 text-sm font-medium nav-links-anim">
+            <span onclick="loadPage('/')">HOME</span>
+            <span onclick="loadPage('/login')">LOGIN</span>
+            <span onclick="loadPage('/register')">REGISTER</span>
+            <span onclick="loadPage('/Dashboard')">DASHBOARD</span>
+            <span onclick="loadPage('/about')">ABOUT US</span>
+             <span onclick="loadPage('/history.html')">HISTORY</span>
+        </div>
+    </nav>
+  <h1>🌍 RE-SRIJAN</h1>
+  
+  <p>Our Journey, Our Impact, Our Future</p>
+</header>
+
+<section>
+  <h2>📜 Our History</h2>
+  <div class="timeline">
+    <p>
+      <strong>RE-SRIJAN</strong> began as a small initiative to manage waste responsibly. 
+      What started with local waste collection has now grown into a structured system that 
+      collects, relocates, recycles, upcycles, and converts waste into valuable resources.
+    </p>
+    <p>
+      Today, Researchen operates through multiple branches and offices, handling various types 
+      of waste such as plastic, e-waste, organic waste, and metal waste — contributing to a 
+      cleaner and more sustainable future.
+    </p>
+  </div>
+</section>
+
+<section class="milestone-section">
+  <h2>🎯 Major Milestones</h2>
+  
+  <!-- Swiper Carousel -->
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <div class="slide-image">
+          <img src="https://adyartimes.in/wp-content/uploads/2025/04/Screenshot-2025-04-04-154050-750x375.png" alt="Waste Collection Drive">
+        </div>
+        <div class="slide-content">
+          <p class="slide-number">01</p>
+          <div class="milestone-badge">📍 2018</div>
+          <h3 class="slide-title">First Local Waste Collection</h3>
+          <p class="slide-description">Started our first waste collection drive in the local community, setting the foundation for sustainable waste management.</p>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <div class="slide-image">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ_I44YJvxVaFT-gst9AmXz4O9XYaLX98rWBoYbTEG02Lo1v4rOUWOmBnv5OBUeWIurxg&usqp=CAU" alt="Recycling Facility">
+        </div>
+        <div class="slide-content">
+          <p class="slide-number">02</p>
+          <div class="milestone-badge">🏭 2019</div>
+          <h3 class="slide-title">Recycling & Upcycling</h3>
+          <p class="slide-description">Expanded to establish advanced recycling and upcycling facilities, transforming waste into valuable resources.</p>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+        <div class="slide-image" style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.1);">
+          <i class="" style="font-size: 100px; opacity: 0.3;"></i>
+        </div>
+        <div class="slide-content">
+          <p class="slide-number">03</p>
+          <div class="milestone-badge">🌐 2020</div>
+          <h3 class="slide-title">Multi-City Expansion</h3>
+          <p class="slide-description">Opened multiple city branches across different regions, extending our sustainable waste management services nationwide.</p>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="swiper-slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+        <div class="slide-image" style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.1);">
+          <i class="fas fa-tasks" style="font-size: 100px; opacity: 0.3;"></i>
+        </div>
+        <div class="slide-content">
+          <p class="slide-number">04</p>
+          <div class="milestone-badge">📊 2025</div>
+          <h3 class="slide-title">10,000+ Orders</h3>
+          <p class="slide-description">Celebrated processing over 10,000 waste orders, demonstrating our commitment to environmental sustainability and customer satisfaction.</p>
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="swiper-slide" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+        <div class="slide-image" style="display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.1);">
+          <i class="fas fa-leaf" style="font-size: 100px; opacity: 0.3;"></i>
+        </div>
+        <div class="slide-content">
+          <p class="slide-number">05</p>
+          <div class="milestone-badge">🎯 Today</div>
+          <h3 class="slide-title">Future Vision</h3>
+          <p class="slide-description">Continuing our mission to revolutionize waste management and create a cleaner, greener future for generations to come.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<section>
+  <h2>📊 Impact Analysis</h2>
+  <div class="charts">
+    <div class="chart-box">
+      <h3>Waste Type Distribution</h3>
+      <canvas id="wasteChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+      <h3>Branch Performance</h3>
+      <canvas id="branchChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+      <h3>Office Contribution</h3>
+      <canvas id="officeChart"></canvas>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 RE-SRIJAN | Sustainable Waste Management Solutions 🌱</p>
+</footer>
+
+<script>
+  // Initialize Swiper Carousel
+  const swiper = new Swiper('.swiper', {
+    direction: 'horizontal',
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    },
+    speed: 800,
+    spaceBetween: 0,
+  });
+
+  // Chart.js Configuration
+  const chartDefaults = {
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: {
+          font: { size: 12, weight: '500' },
+          padding: 15,
+          usePointStyle: true,
+        }
+      }
+    }
+  };
+
+  // Waste Distribution Chart
+  new Chart(document.getElementById('wasteChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Plastic', 'E-Waste', 'Organic', 'Metal'],
+      datasets: [{
+        data: [40, 25, 20, 15],
+        backgroundColor: [
+          '#667eea',
+          '#764ba2',
+          '#a4cf6a',
+          '#f093fb'
+        ],
+        borderColor: '#fff',
+        borderWidth: 2,
+      }]
+    },
+    options: chartDefaults
+  });
+
+  // Branch Performance Chart
+  new Chart(document.getElementById('branchChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['North', 'South', 'East', 'West'],
+      datasets: [{
+        data: [35, 30, 20, 15],
+        backgroundColor: [
+          '#4facfe',
+          '#00f2fe',
+          '#43e97b',
+          '#38f9d7'
+        ],
+        borderColor: '#fff',
+        borderWidth: 2,
+      }]
+    },
+    options: chartDefaults
+  });
+
+  // Office Contribution Chart
+  new Chart(document.getElementById('officeChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Office A', 'Office B', 'Office C'],
+      datasets: [{
+        data: [45, 35, 20],
+        backgroundColor: [
+          '#f5576c',
+          '#f093fb',
+          '#ffa502'
+        ],
+        borderColor: '#fff',
+        borderWidth: 2,
+      }]
+    },
+    options: chartDefaults
+  });
+</script>
+</body>
+</html>
+
+<script src="../js/script.js"></script>
+</body>
+</html>
+
